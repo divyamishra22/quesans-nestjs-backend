@@ -9,7 +9,7 @@ class UserVerifyRequestBody{
      @ApiProperty() @IsString() @IsEmail()  email: string;
   }
 
-  @ApiTags('login')
+  @ApiTags('auth')
 @Controller('auth')
 export class AuthController {
     constructor(private readonly authService: AuthService){}

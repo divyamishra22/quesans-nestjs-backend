@@ -56,7 +56,7 @@ export class QuesService {
    
 
    
-       async deleteyournote(userid:string): Promise<any>{
+       async deleteyourques(userid:string): Promise<any>{
          return this.quesModel.deleteOne({userid}).exec();;
        }
    }
