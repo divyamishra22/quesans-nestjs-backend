@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
-import { ApiProperty, PartialType } from '@nestjs/swagger';
+import { ApiProperty, ApiTags, PartialType } from '@nestjs/swagger';
 import { IsEmail, IsString, MinLength } from 'class-validator';
 import { UserService } from './user.service';
 
@@ -11,6 +11,8 @@ class UserCreateRequestBody{
 
 class UserUpdateRequestBody extends PartialType(UserCreateRequestBody){}
 
+
+@ApiTags('users')
 @Controller('user')
 export class UserController {
     constructor(private userService: UserService) {}

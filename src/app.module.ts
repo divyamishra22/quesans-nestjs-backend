@@ -12,14 +12,17 @@ import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
 
+
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb://divya:divya123@127.0.0.1:27017/mydbqa',
-    ),
+     MongooseModule.forRoot(
+      //  'mongodb://divya:divya123@127.0.0.1:27017/mynewdb1',
+        'mongodb://127.0.0.1:27017/mydbqa',
+      
+    )
     
-    ,QuesModule, UserModule, AuthModule],
-  controllers: [AppController, QuesController, UserController, AuthController],
-  providers: [AppService, QuesService, UserService, AuthService],
+      ,QuesModule, UserModule, AuthModule],
+  controllers: [AppController],
+  providers: [AppService, ],
 })
 export class AppModule {}

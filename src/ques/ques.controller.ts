@@ -1,5 +1,5 @@
 import { Controller, Delete, Get, Patch, Post } from '@nestjs/common';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import { IsString, MinLength } from 'class-validator';
 import { QuesService } from './ques.service';
 
@@ -9,7 +9,7 @@ class CreateQues{
     
 }
 
-
+@ApiTags('ques')
 @Controller('ques')
 export class QuesController {
     constructor(private queservice: QuesService){}
