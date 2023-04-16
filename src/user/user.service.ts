@@ -2,16 +2,20 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './user.schema';
 import { Model } from 'mongoose';
+import { hash } from 'bcrypt';
 
 @Injectable()
 export class UserService {
     constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+ 
 
+    public static PASSWORD_SALT_ROUNDS = 10;
   
    async create(createuser): Promise<User>{
       const user = new this.userModel();
       user.name = createuser.name;
       user.password = createuser.password;
+      user.password = await this.passToHash(user.password)
       const email = createuser.email;
       const findemail = await this.userModel.findOne({email}).exec();
       if(!findemail){
@@ -64,6 +68,11 @@ export class UserService {
       return  user.save();
   }
 
+
+  private async passToHash(password: string): Promise<string> {
+    return hash(password, UserService.PASSWORD_SALT_ROUNDS);
+  }
+  
   
   }
 

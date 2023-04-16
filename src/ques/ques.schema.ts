@@ -1,7 +1,7 @@
 import { Prop, SchemaFactory } from "@nestjs/mongoose";
 import { Schema } from "@nestjs/mongoose";
 
-export type NoteDocument = Ques & Document;
+export type QuesDocument = Ques & Document;
 
 @Schema()
 export class Ques {
