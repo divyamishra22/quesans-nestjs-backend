@@ -11,6 +11,9 @@ import { UserModule } from './user/user.module';
 import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
+import { AnsController } from './ans/ans.controller';
+import { AnsService } from './ans/ans.service';
+import { AnsModule } from './ans/ans.module';
 
 
 @Module({
@@ -21,8 +24,8 @@ import { AuthModule } from './auth/auth.module';
       
     )
     
-      ,QuesModule, UserModule, AuthModule],
-  controllers: [AppController],
-  providers: [AppService, ],
+      ,QuesModule, UserModule, AuthModule, AnsModule],
+  controllers: [AppController, AnsController],
+  providers: [AppService, AnsService, ],
 })
 export class AppModule {}

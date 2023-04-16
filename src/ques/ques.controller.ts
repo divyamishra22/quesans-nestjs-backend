@@ -48,11 +48,11 @@ async getallques(): Promise<Ques[]>{
     }
   
 
-@UseGuards(JwtGuard)
-@ApiBearerAuth()
-@Patch('/updateyourques')
-    async updateyourques(@getUserbyId() userid:string, @Body()updateques:UpdateQues){
-        return await this.queservice.updateyourques(userid,updateques );
-    }
+// @UseGuards(JwtGuard)
+// @ApiBearerAuth()
+// @Patch('/updateyourques')
+//     async updateyourques(@getUserbyId() userid:string, @Body()updateques:UpdateQues){
+//         return await this.queservice.updateyourques(userid,updateques );
+//     }
     
 }

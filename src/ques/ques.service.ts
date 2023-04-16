@@ -33,18 +33,18 @@ export class QuesService {
        }
    
    
-       async updateyourques(userid:string, updateques){
-          const ques = await this.quesModel.findOne({_id: userid}).exec();
-         if(updateques.title){
-           ques.name = updateques.title;
-         }
-         if(updateques.description){
-            ques.password = updateques.description;
-         }
+      //  async updateyourques(userid:string, updateques){
+      //     const ques = await this.quesModel.findOne({_id: userid}).exec();
+      //    if(updateques.title){
+      //      ques.name = updateques.title;
+      //    }
+      //    if(updateques.description){
+      //       ques.password = updateques.description;
+      //    }
          
-           return  ques.save();
+      //      return  ques.save();
       
-       }
+      //  }
    
 
        async getallques(): Promise<Ques[]>{
