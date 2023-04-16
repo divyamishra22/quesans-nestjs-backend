@@ -4,6 +4,7 @@ import { IsNotEmpty, IsOptional, IsString, MinLength } from 'class-validator';
 import { getUserbyId } from 'src/auth/auth.decorator';
 import { JwtGuard } from 'src/auth/guards/jwt.guards';
 import { AnsService } from './ans.service';
+import { Ans } from './ans.schema';
 
 
 
@@ -28,9 +29,11 @@ async createyourques(@Body() createans: CreateAns, @getUserbyId() userId:string)
 return await this.anservice.createyourans(createans.answer, createans.quesId, createans.date, userId);
 }
 
+@UseGuards(JwtGuard)
+@ApiBearerAuth()
 @Get('/anstoyourques')
-getanswertoyourques(@Param('quesId') quesId: string){
-    return this.anservice.getanswerstoyourques(quesId);
+ async getanswertoyourques(@Param('quesId') quesId: string): Promise<Ans[]>{
+    return  await this.anservice.getanswerstoyourques(quesId);
 }
 
 

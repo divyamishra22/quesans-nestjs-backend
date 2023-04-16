@@ -25,11 +25,11 @@ export class AnsService {
     }
 
     async getanswerstoyourques(quesId:string): Promise<Ans[]>{
-        return await this.ansModel.find({ques: quesId});
+        return await this.ansModel.find({ques: quesId}).exec();
     }
 
     async getyourans(userId: string): Promise<Ans[]>{
-        return await this.ansModel.find({user: userId});
+        return await this.ansModel.find({user: userId}).exec();
     }
 
      async  deleteyourans(userId:string): Promise<any>{
