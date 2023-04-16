@@ -25,7 +25,7 @@ import { AnsModule } from './ans/ans.module';
     )
     
       ,QuesModule, UserModule, AuthModule, AnsModule],
-  controllers: [AppController, AnsController],
-  providers: [AppService, AnsService, ],
+  controllers: [AppController,],
+  providers: [AppService,  ],
 })
 export class AppModule {}

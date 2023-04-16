@@ -25,4 +25,4 @@ export class Ans {
   @Prop({ optional: true})
   date:  Date;
 }
-export const QuesSchema = SchemaFactory.createForClass(Ans);
+export const AnsSchema = SchemaFactory.createForClass(Ans);

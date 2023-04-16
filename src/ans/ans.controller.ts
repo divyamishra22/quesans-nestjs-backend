@@ -1,5 +1,5 @@
-import { Body, Controller, Delete, Get, Post, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth, ApiProperty } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiProperty, ApiTags } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional, IsString, MinLength } from 'class-validator';
 import { getUserbyId } from 'src/auth/auth.decorator';
 import { JwtGuard } from 'src/auth/guards/jwt.guards';
@@ -7,13 +7,15 @@ import { AnsService } from './ans.service';
 
 
 
-@Controller('ans')class CreateAns{
+class CreateAns{
     
     @ApiProperty()  @IsString() @MinLength(5) answer: string;
     @ApiProperty()  @IsString() @IsNotEmpty() quesId: string;
     @ApiProperty() @IsString() @IsOptional() date: string;
     
 }
+@ApiTags('ans')
+@Controller('ans')
 export class AnsController {
     constructor(private anservice: AnsService){}
 
@@ -24,6 +26,11 @@ export class AnsController {
 @Post('/postyourans')
 async createyourques(@Body() createans: CreateAns, @getUserbyId() userId:string){
 return await this.anservice.createyourans(createans.answer, createans.quesId, createans.date, userId);
+}
+
+@Get('/anstoyourques')
+getanswertoyourques(@Param('quesId') quesId: string){
+    return this.anservice.getanswerstoyourques(quesId);
 }
 
 

@@ -24,6 +24,10 @@ export class AnsService {
         return ans.save();
     }
 
+    async getanswerstoyourques(quesId:string): Promise<Ans[]>{
+        return await this.ansModel.find({ques: quesId});
+    }
+
     async getyourans(userId: string): Promise<Ans[]>{
         return await this.ansModel.find({user: userId});
     }
