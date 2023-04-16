@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { IsEmail, IsString, MinLength } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiTags } from '@nestjs/swagger';
 
 
 class UserVerifyRequestBody{
@@ -9,6 +9,7 @@ class UserVerifyRequestBody{
      @ApiProperty() @IsString() @IsEmail()  email: string;
   }
 
+  @ApiTags('login')
 @Controller('auth')
 export class AuthController {
     constructor(private readonly authService: AuthService){}

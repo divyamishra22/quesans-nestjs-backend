@@ -49,7 +49,12 @@ export class QuesService {
        async getallques(): Promise<Ques[]>{
         return this.quesModel.find().exec();
        }
+      
+       async getyourques(userid:string): Promise<Ques[]>{
+        return this.quesModel.find({user:userid}).exec();
+       }
    
+
    
        async deleteyournote(userid:string): Promise<any>{
          return this.quesModel.deleteOne({userid}).exec();;
