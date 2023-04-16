@@ -1,13 +1,16 @@
 import { Controller, Delete, Get, Patch, Post } from '@nestjs/common';
-import { ApiProperty, ApiTags } from '@nestjs/swagger';
+import { ApiProperty, ApiTags, PartialType } from '@nestjs/swagger';
 import { IsString, MinLength } from 'class-validator';
 import { QuesService } from './ques.service';
+import { getUserbyId } from 'src/auth/auth.decorator';
 
 class CreateQues{
     @ApiProperty() @IsString() @MinLength(3) title: string;
     @ApiProperty()  @IsString() @MinLength(5) description: string;
     
 }
+
+class UpdateQues extends PartialType(CreateQues){}
 
 @ApiTags('ques')
 @Controller('ques')
@@ -20,28 +23,28 @@ return await this.queservice.createyourques(createques.title, createques.descrip
 }
 
 @Get('/getyourques')
-async getyourques(){
-    return `your ques displayed`;
+async getyourques(@getUserbyId() userid:string){
+    return await this.getyourques(userid);
 }
 
 @Get('/getallques')
 async getallques(){
-    return `all ques displayed`;
+    return await this.getallques();
 }
 
 
 
 
 @Delete('/deleteyourques')
-    async deleteyourques(){
-        return `ques deleted`;
+    async deleteyourques(@getUserbyId() userid:string){
+        return await this.deleteyourques(userid);
     }
   
 
 
 @Patch('/updateyourques')
-    async updateyourques(){
-        return `ques updated`;
+    async updateyourques(@getUserbyId() userid:string, updateques:UpdateQues){
+        return await this.updateyourques(userid,updateques );
     }
     
 }

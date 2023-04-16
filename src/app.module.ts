@@ -17,7 +17,7 @@ import { AuthModule } from './auth/auth.module';
   imports: [
      MongooseModule.forRoot(
       //  'mongodb://divya:divya123@127.0.0.1:27017/mynewdb1',
-        'mongodb://127.0.0.1:27017/mydbqa',
+         'mongodb://127.0.0.1:27017/mydbqa',
       
     )
     

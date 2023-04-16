@@ -28,19 +28,31 @@ export class QuesService {
            HttpStatus.BAD_REQUEST,
          )
         }
-        
         return ques.save();
        }
    
    
-       async updateyourques(){
-         return `updated your question successfully`;
+       async updateyourques(userid:string, updateques){
+          const ques = await this.quesModel.findOne({_id: userid}).exec();
+         if(updateques.title){
+           ques.name = updateques.title;
+         }
+         if(updateques.description){
+            ques.password = updateques.description;
+         }
+          
+           return  ques.save();
+      
+       }
+   
+
+       async getallques(): Promise<Ques[]>{
+        return this.quesModel.find().exec();
        }
    
    
-   
-       async deleteyournote(){
-         return `deleted your ques sucessfully`;
+       async deleteyournote(userid:string): Promise<any>{
+         return this.quesModel.deleteOne({userid}).exec();;
        }
    }
    
