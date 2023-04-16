@@ -14,8 +14,8 @@ export class Ques {
   description: string;
 
   
-  @Prop({required:true})
-  tag: string;
+//   @Prop({required:true})
+//   tag: string;
 
   
   @Prop({ optional: true})
