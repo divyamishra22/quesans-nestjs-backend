@@ -8,9 +8,6 @@ export type UserDocument = User & Document;
 @Schema()
 export class User {
 
-  // @Prop({type: [Types.ObjectId], ref: Note.name})
-  // notes: Note[];
-
   @ApiProperty()
   @Prop({required:true})
   name: string;
