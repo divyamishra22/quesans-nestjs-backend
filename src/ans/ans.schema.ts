@@ -11,6 +11,9 @@ export class Ans {
   @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'Ques'})
   ques:  Types.ObjectId;
 
+  @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'User'})
+  user:  Types.ObjectId;
+
 
 // @Prop({required:true , unique: true})
 //   title: string;
