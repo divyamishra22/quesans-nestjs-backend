@@ -8,6 +8,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 import { UserModule } from './user/user.module';
+import { AuthController } from './auth/auth.controller';
+import { AuthService } from './auth/auth.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -15,8 +18,8 @@ import { UserModule } from './user/user.module';
       'mongodb://divya:divya123@127.0.0.1:27017/mydbqa',
     ),
     
-    ,QuesModule, UserModule],
-  controllers: [AppController, QuesController, UserController],
-  providers: [AppService, QuesService, UserService],
+    ,QuesModule, UserModule, AuthModule],
+  controllers: [AppController, QuesController, UserController, AuthController],
+  providers: [AppService, QuesService, UserService, AuthService],
 })
 export class AppModule {}
