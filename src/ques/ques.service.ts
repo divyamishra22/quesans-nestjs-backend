@@ -7,7 +7,7 @@ import { Ques } from './ques.schema';
 export class QuesService {
     constructor(@InjectModel(Ques.name) private quesModel: Model<any>){}
 
-    async  createyourques(title:string, desc:string): Promise<Ques>{
+    async  createyourques(title:string, desc:string, userId:string): Promise<Ques>{
         const ques = new this.quesModel();
         const findtitle =  await this.quesModel.findOne({title}).exec();
         if(!findtitle)
@@ -28,6 +28,7 @@ export class QuesService {
            HttpStatus.BAD_REQUEST,
          )
         }
+        ques.user = userId;
         return ques.save();
        }
    
@@ -40,7 +41,7 @@ export class QuesService {
          if(updateques.description){
             ques.password = updateques.description;
          }
-          
+         
            return  ques.save();
       
        }
@@ -50,8 +51,8 @@ export class QuesService {
         return this.quesModel.find().exec();
        }
       
-       async getyourques(userid:string): Promise<Ques[]>{
-        return this.quesModel.find({user:userid}).exec();
+       async getyourques(userId:string): Promise<Ques[]>{
+        return this.quesModel.find({user:userId}).exec();
        }
    
 

@@ -22,16 +22,16 @@ export class QuesController {
 @UseGuards(JwtGuard)
 @ApiBearerAuth()
 @Post('/createyourques')
-async createyourques(@Body() createques: CreateQues){
-return await this.queservice.createyourques(createques.title, createques.description);
+async createyourques(@Body() createques: CreateQues, @getUserbyId() userId:string){
+return await this.queservice.createyourques(createques.title, createques.description, userId);
 }
 
 
 @UseGuards(JwtGuard)
 @ApiBearerAuth()
 @Get('/getyourques')
- getyourques(@getUserbyId() userid:string){
-    return  this.queservice.getyourques(userid);
+ getyourques(@getUserbyId() userId:string){
+    return  this.queservice.getyourques(userId);
 }
 
 @Get('/getallques')
