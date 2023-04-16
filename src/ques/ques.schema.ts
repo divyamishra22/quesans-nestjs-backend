@@ -21,4 +21,4 @@ export class Ques {
   @Prop({ optional: true})
   date:  Date;
 }
-export const NoteSchema = SchemaFactory.createForClass(Ques);
+export const QuesSchema = SchemaFactory.createForClass(Ques);
