@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth, ApiProperty, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiProperty, ApiTags, PartialType } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional, IsString, MinLength } from 'class-validator';
 import { getUserbyId } from 'src/auth/auth.decorator';
 import { JwtGuard } from 'src/auth/guards/jwt.guards';
@@ -15,6 +15,9 @@ class CreateAns{
     @ApiProperty() @IsString() @IsOptional() date: string;
     
 }
+// class GetAns extends PartialType(CreateAns){}
+
+
 @ApiTags('ans')
 @Controller('ans')
 export class AnsController {
@@ -31,8 +34,8 @@ return await this.anservice.createyourans(createans.answer, createans.quesId, cr
 
 @UseGuards(JwtGuard)
 @ApiBearerAuth()
-@Get('/anstoyourques')
- async getanswertoyourques(@Param('quesId') quesId: string): Promise<Ans[]>{
+@Get('/:quesId/anstoyourques')
+ async getanswertoyourques(@Param('quesId') quesId: string): Promise<any>{
     return  await this.anservice.getanswerstoyourques(quesId);
 }
 

@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { Ans } from './ans.schema';
 import { InjectModel } from '@nestjs/mongoose';
 
@@ -24,8 +24,10 @@ export class AnsService {
         return ans.save();
     }
 
-    async getanswerstoyourques(quesId:string): Promise<Ans[]>{
-        return await this.ansModel.find({ques: quesId}).exec();
+    async getanswerstoyourques(quesId:string): Promise<any>{
+           return await this.ansModel.find({ques: quesId}).exec();
+        
+        
     }
 
     async getyourans(userId: string): Promise<Ans[]>{
